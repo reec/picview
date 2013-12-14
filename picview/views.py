@@ -7,3 +7,10 @@ def index(request):
         'index.html',
         {'albums': albums}
     )
+
+def album(request, slug):
+    album = Album.objects.get(slug)
+    return render_to_response(
+        'album.html',
+        {'album': album}
+    )

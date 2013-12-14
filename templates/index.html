@@ -1,4 +1,11 @@
-<html>
-<h1>Albums</h1>
-{{ albums }}
-</html>
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Albums</h1>
+    {% for album in albums %}
+        <div class="album">
+            <h2><a href="{% url 'album' album.slug %}">{{ album.name }}</a></h2>
+            <p>{{ album.files|length }} files</p>
+        </div>
+    {% endfor %}
+{% endblock %}

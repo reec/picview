@@ -8,6 +8,7 @@ class AlbumManager(object):
 
     def __init__(self):
         self._model = None
+        self._albums = None
 
     @property
     def model(self):
@@ -16,18 +17,26 @@ class AlbumManager(object):
             self._model = self._get_model()
         return self._model
 
+    @property
+    def albums(self):
+        if not self._albums:
+            self._albums = self.get_album_list()
+        return self._albums
+
     def _get_model(self):
         from picview.models import Album
         return Album
 
-    def get(self, name):
-        return None # An Album
+    def get(self, slug):
+        for album in self.albums:
+            if album.slug == slug:
+                return album
+        raise Exception('Could not find Album with slug %s' % slug)
 
     def all(self):
-        return self.get_album_list()
+        return self.albums
 
     def get_album_list(self):
-
         pic_dir = settings.PICVIEW_DIR
         album_names = os.listdir(pic_dir)
         album_list = []
