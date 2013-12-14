@@ -1,14 +1,24 @@
 import os
 from django.conf import settings
 
-class BaseManager(object):
-    def __init__(self, model):
-        self.model = model
-
-class AlbumManager(BaseManager):
+class AlbumManager(object):
     """
     A fake manager
     """
+
+    def __init__(self):
+        self._model = None
+
+    @property
+    def model(self):
+        # defer importing
+        if not self._model:
+            self._model = self._get_model()
+        return self._model
+
+    def _get_model(self):
+        from picview.models import Album
+        return Album
 
     def get(self, name):
         return None # An Album

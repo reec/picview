@@ -1,3 +1,5 @@
+import os
+from django.conf import settings
 from picview.managers import AlbumManager
 
 class Album(object):
