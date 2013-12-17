@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+    <h1>{{ image.name }}</h1>
+    <img src="{% static image.get_relative_path %}">
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>{{ album.name }}</h1>
+    {% for file in album.files %}
+        <div class="thumbnail">
+            <p><a href="{{ file.get_url }}">{{ file.name }}</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,5 +1,7 @@
 import os
 from django.conf import settings
+from django.core.cache import cache
+
 
 class AlbumManager(object):
     """
@@ -28,6 +30,10 @@ class AlbumManager(object):
         return Album
 
     def get(self, slug):
+        album = cache.get('album-%s' % slug)
+        if album:
+            print('got album from cache')
+            return album
         for album in self.albums:
             if album.slug == slug:
                 return album

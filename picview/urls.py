@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', 'picview.views.index', name='index'),
-    url(r'^album/(?P<slug>.+)$', 'picview.views.album', name='album'),
+    url(r'^album/(?P<slug>[^/]+)$', 'picview.views.album', name='album'),
+    url(r'^album/(?P<slug>[^/]+)/(?P<position>\d+)$', 'picview.views.image', name='image'),
     url(r'^admin/', include(admin.site.urls)),
 )
