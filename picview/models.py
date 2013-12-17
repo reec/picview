@@ -95,9 +95,6 @@ class File(object):
     def get_resolution(self):
         return self.meta.get('resolution')
 
-    def get_full_path(self):
-        return os.path.join(self.album.get_full_path(), self.name)
-
     def get_relative_path(self):
         return os.path.join(self.album.name, self.name)
 
@@ -112,9 +109,6 @@ class Image(File):
 
     def get_url(self):
         return reverse('image', args=[self.album.slug, self.position])
-
-    def get_output_url(self):
-        return reverse('output_image', args=[self.album.slug, self.position])
 
 class Video(File):
     def __init__(self, *args, **kwargs):
