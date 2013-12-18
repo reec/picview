@@ -1,1 +1,13 @@
 # yer suppose to have one of these no?
+
+Requirements:
+    * libreadline-dev
+    * memcached
+    * Python 3.3 virtual env        
+        * git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+        * Add ~/.pyenv/shims:~/.pyenv/bin to PATH
+        * pyenv install 3.3.0
+        * pyenv shell 3.3.0
+        * virtualenv -p ~/.pyenv/versions/3.3.0/bin/python env
+    * Stuff from pip
+        * pip install -r requirements.pip
