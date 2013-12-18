@@ -1,2 +1,4 @@
 Django==1.6
+Pillow==2.2.2
 python3-memcached==1.51
+readline==6.2.4.1

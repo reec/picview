@@ -3,6 +3,7 @@
 Requirements:
     * libreadline-dev
     * memcached
+    * libjpeg-dev (for PIL/Pillow)
     * Python 3.3 virtual env        
         * git clone git://github.com/yyuu/pyenv.git ~/.pyenv
         * Add ~/.pyenv/shims:~/.pyenv/bin to PATH

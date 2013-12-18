@@ -1,4 +1,5 @@
 import os
+from PIL import Image as PILImage
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
@@ -54,7 +55,7 @@ class Album(object):
     def get_videos(self):
         return [obj for obj in self.files if isinstance(obj, Video)]
 
-    def get_full_path(self):
+    def get_path(self):
         return os.path.join(settings.PICVIEW_DIR, self.name)
 
 
@@ -100,19 +101,16 @@ class File(object):
     def get_resolution(self):
         return self.meta.get('resolution')
 
-    def get_full_path(self):
-        return os.path.join(self.album.get_full_path(), self.name)
-
-    def get_relative_path(self):
-        return os.path.join(self.album.name, self.name)
+    def get_path(self):
+        return os.path.join(self.album.get_path(), self.name)
 
 class Image(File):
     def __init__(self, *args, **kwargs):
         super(Image, self).__init__(*args, **kwargs)
 
     def _get_meta(self):
-        # look at the file and stuff
-        return {'resolution': '1920x1080'}
+        image = PILImage.open(self.get_path())
+        return {'resolution': '%sx%s' % image.size}
 
     def get_view_url(self):
         return reverse('image', args=[self.album.slug, self.position+1])
@@ -121,8 +119,24 @@ class Image(File):
         return reverse('output_image', args=[self.album.slug, self.position+1])
 
     def get_thumbnail_url(self):
-        return ''
+        return reverse('output_image_thumbnail', args=[self.album.slug, self.position+1])
 
+    def get_thumbnail_path(self):
+        return os.path.join(self.album.get_path(), 'thumbnails', self.name)
+
+    def thumbnail_exists(self):
+        return os.path.exists(self.get_thumbnail_path())
+
+    def generate_thumbnail(self):
+        image = PILImage.open(self.get_path())
+        image.thumbnail((128, 128), PILImage.ANTIALIAS)
+
+        # Create the subdir 'thumbnails' if it doesn't exist
+        thumbnail_dir_path = os.path.join(self.album.get_path(), 'thumbnails')
+        if not os.path.exists(thumbnail_dir_path):
+            os.mkdir(thumbnail_dir_path)
+
+        image.save(self.get_thumbnail_path())
 
 class Video(File):
     def __init__(self, *args, **kwargs):

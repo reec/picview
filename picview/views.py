@@ -30,5 +30,13 @@ def image(request, slug, position):
 
 def output_image(request, slug, position):
     image = Album.objects.get(slug).files[int(position)-1]
-    image_data = open(image.get_full_path(), 'rb').read()
+    image_data = open(image.get_path(), 'rb').read()
     return HttpResponse(image_data, content_type=mimetypes.guess_type(image.name)[0])
+
+
+def output_image_thumbnail(request, slug, position):
+    image = Album.objects.get(slug).files[int(position)-1]
+    if not image.thumbnail_exists():
+        image.generate_thumbnail()
+    image_data = open(image.get_thumbnail_path(), 'rb').read()
+    return HttpResponse(image_data, content_type='image/jpeg')
