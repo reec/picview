@@ -100,6 +100,11 @@ class File(object):
     def get_resolution(self):
         return self.meta.get('resolution')
 
+    def get_full_path(self):
+        return os.path.join(self.album.get_full_path(), self.name)
+
+    def get_relative_path(self):
+        return os.path.join(self.album.name, self.name)
 
 class Image(File):
     def __init__(self, *args, **kwargs):
@@ -110,10 +115,10 @@ class Image(File):
         return {'resolution': '1920x1080'}
 
     def get_view_url(self):
-        return reverse('image', args=[self.album.slug, self.position])
+        return reverse('image', args=[self.album.slug, self.position+1])
 
     def get_url(self):
-        return ''
+        return reverse('output_image', args=[self.album.slug, self.position+1])
 
     def get_thumbnail_url(self):
         return ''
@@ -128,4 +133,4 @@ class Video(File):
         return {'resolution': '1920x1080'}
 
     def get_view_url(self):
-        return reverse('video', args=[self.album.slug, self.position])
+        return reverse('video', args=[self.album.slug, self.position+1])

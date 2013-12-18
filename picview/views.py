@@ -1,5 +1,7 @@
+import mimetypes
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from picview.models import Album
+from picview.models import Album, Image
 
 
 def index(request):
@@ -19,8 +21,14 @@ def album(request, slug):
 
 
 def image(request, slug, position):
-    image = Album.objects.get(slug).files[int(position)]
+    image = Album.objects.get(slug).files[int(position)-1]
     return render_to_response(
         'image.html',
         {'image': image}
     )
+
+
+def output_image(request, slug, position):
+    image = Album.objects.get(slug).files[int(position)-1]
+    image_data = open(image.get_full_path(), 'rb').read()
+    return HttpResponse(image_data, content_type=mimetypes.guess_type(image.name)[0])
