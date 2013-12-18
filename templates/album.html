@@ -3,7 +3,11 @@
     <h1>{{ album.name }}</h1>
     {% for file in album.files %}
         <div class="thumbnail">
-            <p><a href="{{ file.get_url }}">{{ file.name }}</a></p>
+            <p>
+                <a href="{{ file.get_view_url }}">{{ file.name }}
+                    <img src="{{ file.get_thumbnail_url }}">
+                </a>
+            </p>
         </div>
     {% endfor %}
 {% endblock %}

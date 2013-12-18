@@ -66,7 +66,6 @@ class File(object):
         self._position = None
         self._meta = {}
 
-
     def __repr__(self):
         return '<%s: %s>' % (self.__class__.__name__, self.name)
 
@@ -89,14 +88,17 @@ class File(object):
     def _get_meta(self):
         raise NotImplementedError
 
+    def get_view_url(self):
+        raise NotImplementedError
+
     def get_url(self):
+        raise NotImplementedError
+
+    def get_thumbnail_url(self):
         raise NotImplementedError
 
     def get_resolution(self):
         return self.meta.get('resolution')
-
-    def get_relative_path(self):
-        return os.path.join(self.album.name, self.name)
 
 
 class Image(File):
@@ -107,8 +109,15 @@ class Image(File):
         # look at the file and stuff
         return {'resolution': '1920x1080'}
 
-    def get_url(self):
+    def get_view_url(self):
         return reverse('image', args=[self.album.slug, self.position])
+
+    def get_url(self):
+        return ''
+
+    def get_thumbnail_url(self):
+        return ''
+
 
 class Video(File):
     def __init__(self, *args, **kwargs):
@@ -118,5 +127,5 @@ class Video(File):
         # look at the file and stuff
         return {'resolution': '1920x1080'}
 
-    def get_url(self):
+    def get_view_url(self):
         return reverse('video', args=[self.album.slug, self.position])
