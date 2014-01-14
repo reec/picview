@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>Albums</h1>
-    {% for album in albums %}
-        <div class="album">
-            <h2><a href="{% url 'album' album.slug %}">{{ album.name }}</a></h2>
-            <p>{{ album.files|length }} files</p>
-        </div>
-    {% endfor %}
+    <div id="index">
+        {% for album in albums %}
+            <div class="album">
+                <h2>
+                    <a class="inset-box" href="{% url 'album' album.slug %}">
+                        <span class="album-name">{{ album.name }}</span>
+                        <span class="album-stats">{{ album.files|length }} files</span>
+                    </a>
+                </h2>
+                <div class="inset-box thumbnails">
+                    {% for file in album.files|slice:':3' %}
+                        <div class="thumbnail">
+                            <a href="{{ file.get_view_url }}">
+                                <img src="{{ file.get_thumbnail_url }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

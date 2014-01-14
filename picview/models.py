@@ -35,7 +35,7 @@ class Album(object):
             if ext in settings.IMAGE_EXTS:
                 obj = Image(name=file_name, album=self)
             elif ext in settings.VIDEO_EXTS:
-                obj = Image(name=file_name, album=self)
+                obj = Video(name=file_name, album=self)
             else:
                 continue
             object_list.append(obj)

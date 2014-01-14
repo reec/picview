@@ -5,7 +5,23 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-{% block body %}
-{% endblock %}
+    <div id="topBar">
+        <div id="logo">
+            <a href="/"><img src="{% static 'img/picview.png' %}"/></a>
+        </div>
+        <div>
+            <a href="/toolbox/charts/">Charts</a>
+        </div>
+        <div>
+            <a href="#">...</a>
+        </div>
+    </div>
+    <div id="container">
+        <div id="contentHolder">
+            <div id="content">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
