@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>{{ image.name }}</h1>
-    <img src="{{ image.get_url }}">
+    <div id="view">
+        <div id="image" class="inset-box">
+            <img src="{{ image.get_url }}">
+        </div>
+        <h1 class="inset-box">{{ image.name }}</h1>
+    <div id="view">
 {% endblock %}

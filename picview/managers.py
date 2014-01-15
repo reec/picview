@@ -45,6 +45,7 @@ class AlbumManager(object):
     def get_album_list(self):
         pic_dir = settings.PICVIEW_DIR
         album_names = os.listdir(pic_dir)
+        print(album_names)
         album_list = []
         for album_name in album_names:
             album_list.append(self.model(name=album_name))

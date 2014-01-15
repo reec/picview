@@ -3,14 +3,14 @@
 {% block body %}
     <div id="index">
         {% for album in albums %}
-            <div class="album">
+            <div class="album inset-box">
                 <h2>
-                    <a class="inset-box" href="{% url 'album' album.slug %}">
+                    <a href="{% url 'album' album.slug %}">
                         <span class="album-name">{{ album.name }}</span>
                         <span class="album-stats">{{ album.files|length }} files</span>
                     </a>
                 </h2>
-                <div class="inset-box thumbnails">
+                <div class="inset-box-content thumbnails">
                     {% for file in album.files|slice:':3' %}
                         <div class="thumbnail">
                             <a href="{{ file.get_view_url }}">

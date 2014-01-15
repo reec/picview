@@ -84,7 +84,7 @@ p {
 }
 
 h1 {
-    font-size: 27px;
+    font-size: 22px;
 }
 
 h2 {
@@ -274,10 +274,6 @@ input.sign {
     padding: 4px 6px;
 }
 
-#topBar #menuLink .link:hover, #topBar #menu a:hover {
-    //color: #666;
-}
-
 #topBar #menu {
     position: absolute;
     width: 200px;
@@ -315,7 +311,11 @@ input.sign {
     color: #bbb;
 }
 #content > div > div {
-    padding: 0 10px;
+
+}
+
+#content a {
+    color: #ddd;
 }
 
 #content p {
@@ -377,6 +377,15 @@ input.sign {
     color: #ddd;
 }
 
+#content .inset-box h1,
+#content .inset-box h2 {
+    padding: 10px 5px 0 5px;
+}
+
+#content .inset-box .inset-box-content {
+    margin-top: 10px;
+}
+
 /* -- index/album list -- */
 #index {
     max-width: 700px;
@@ -399,5 +408,47 @@ input.sign {
 }
 #index .album .thumbnails .thumbnail a {
     display: inline-block;
+    box-shadow: 0 0 10px 0 #000;
+}
+
+
+/* -- album -- */
+#album {
+    max-width: 960px;
+    min-width: 570px;
+}
+#album h2 a .album-stats {
+    float: right;
+    font-size: 12px;
+}
+#album #thumbnails {
+    text-align: center;
+    padding: 0;
+    overflow: auto;
+}
+#album #thumbnails .thumbnail {
+    float: left;
+    width: 25%;
+    overflow: hidden;
+    padding: 10px 0;
+}
+#album #thumbnails .thumbnail a {
+    display: inline-block;
+    box-shadow: 0 0 10px 0 #000;
+}
+
+
+
+/* -- view -- */
+#view {
+    /* set to preferred view size */
+    max-width: 1024px;
+    min-width: 435px;
+}
+#view #image {
+    padding: 10px 0;
+}
+#view #image img {
+    width: 100%;
     box-shadow: 0 0 10px 0 #000;
 }

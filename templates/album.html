@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+
 {% block body %}
-    <h1>{{ album.name }}</h1>
-    {% for file in album.files %}
-        <div class="thumbnail">
-            <p>
-                <a href="{{ file.get_view_url }}">{{ file.name }}
-                    <img src="{{ file.get_thumbnail_url }}">
-                </a>
-            </p>
+    <div id="album">
+        <div class="inset-box">
+            <h1>{{ album.name }}</h1>
+            <div id="thumbnails" class="inset-box-content">
+                {% for file in album.files %}
+                    <div class="thumbnail">
+                        <a href="{{ file.get_view_url }}">
+                            <img src="{{ file.get_thumbnail_url }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
