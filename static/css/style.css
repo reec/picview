@@ -278,7 +278,7 @@ input.sign {
     position: absolute;
     width: 200px;
     top: 23px;
-    left: 0px;
+    left: 0;
     border-right: 1px solid #666;
 }
 
@@ -301,6 +301,11 @@ input.sign {
     overflow: hidden;
     padding: 0 20px 20px 20px;
 }
+@media (max-width: 640px) {
+    #contentHolder {
+        padding: 0 0 20px 0;
+    }
+}
 
 #content > div {
     /*max-width: 960px;*/
@@ -309,6 +314,12 @@ input.sign {
     background-color: #444;
     box-shadow: 0 0 10px 5px #111;
     color: #bbb;
+}
+@media (max-width: 640px) {
+    #content > div {
+        max-width: none !important;
+        min-width: 0 !important;
+    }
 }
 #content > div > div {
 
@@ -369,11 +380,11 @@ input.sign {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    margin: 10px 0px;
+    margin: 10px 0;
     padding: 10px 8px;
     border: 0;
     background-color: #222;
-    box-shadow: inset 0px 0px 10px 0px #000;
+    box-shadow: inset 0 0 10px 0 #000;
     color: #ddd;
 }
 
@@ -387,6 +398,7 @@ input.sign {
 }
 
 /* -- index/album list -- */
+
 #index {
     max-width: 700px;
     min-width: 435px;
