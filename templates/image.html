@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
+
+{% block breadcrumbs %}
+<div>
+    <a href="{% url 'album' image.album.slug %}">{{ image.album.name }}</a>
+</div>
+<div>
+    <a href="">{{ image.name }}</a>
+</div>
+{% endblock %}
 {% block body %}
     <div id="view">
-        <div id="image" class="inset-box">
-            <img src="{{ image.get_url }}">
+        <div class="inset-box">
+            <div id="image">
+                {% if not image.is_first %}
+                    <a id="prev" class="nav-link" accesskey="z" href="{% url 'image' image.album.slug image.position %}"></a>
+                {% endif %}
+                {% if not image.is_last %}
+                    <a id="next" class="nav-link" accesskey="x"  href="{% url 'image' image.album.slug image.position|add:'2' %}"></a>
+                {% endif %}
+                <img src="{{ image.get_url }}">
+            </div>
         </div>
-        <h1 class="inset-box">{{ image.name }}</h1>
     <div id="view">
 {% endblock %}

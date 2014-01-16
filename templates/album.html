@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
+{% block breadcrumbs %}
+<div>
+    <a href="">{{ album.name }}</a>
+</div>
+{% endblock %}
 {% block body %}
     <div id="album">
         <div class="inset-box">
-            <h1>{{ album.name }}</h1>
             <div id="thumbnails" class="inset-box-content">
                 {% for file in album.files %}
                     <div class="thumbnail">

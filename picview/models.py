@@ -86,6 +86,12 @@ class File(object):
     def resolution(self):
         return self.get_resolution()
 
+    def is_first(self):
+        return self.position is 0
+
+    def is_last(self):
+        return self.position is len(self.album.files)-1
+
     def _get_meta(self):
         raise NotImplementedError
 

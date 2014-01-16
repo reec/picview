@@ -11,12 +11,7 @@
         <div id="logo">
             <a href="/"><img src="{% static 'img/picview.png' %}"/></a>
         </div>
-        <div>
-            <a href="/toolbox/charts/">Charts</a>
-        </div>
-        <div>
-            <a href="#">...</a>
-        </div>
+        {% block breadcrumbs %}{% endblock %}
     </div>
     <div id="container">
         <div id="contentHolder">
