@@ -414,6 +414,14 @@ input.sign {
     overflow: hidden;
     padding: 10px 0;
 }
+@media (max-width: 435px) {
+    #index .album .thumbnails .thumbnail {
+        width: 50%;
+    }
+    #index .album .thumbnails .thumbnail:last-child {
+        display: none;
+    }
+}
 #index .album .thumbnails .thumbnail a {
     display: inline-block;
     box-shadow: 0 0 10px 0 #000;
@@ -439,6 +447,16 @@ input.sign {
     width: 25%;
     overflow: hidden;
     padding: 10px 0;
+}
+@media (max-width: 560px) {
+    #album #thumbnails .thumbnail {
+        width: 33%;
+    }
+}
+@media (max-width: 435px) {
+    #album #thumbnails .thumbnail {
+        width: 50%;
+    }
 }
 #album #thumbnails .thumbnail a {
     display: inline-block;
