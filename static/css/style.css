@@ -418,6 +418,7 @@ input.sign {
     #index .album .thumbnails .thumbnail {
         width: 50%;
     }
+    /* TODO: don't load this image if don't intend to show it */
     #index .album .thumbnails .thumbnail:last-child {
         display: none;
     }

@@ -116,6 +116,7 @@ class Image(File):
 
     def _get_meta(self):
         image = PILImage.open(self.get_path())
+        # TODO: moar exif
         return {'resolution': '%sx%s' % image.size}
 
     def get_view_url(self):
@@ -149,7 +150,7 @@ class Video(File):
         super(Video, self).__init__(*args, **kwargs)
 
     def _get_meta(self):
-        # look at the file and stuff
+        # TODO: look at the file and stuff
         return {'resolution': '1920x1080'}
 
     def get_view_url(self):

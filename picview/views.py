@@ -14,6 +14,7 @@ def index(request):
 
 def album(request, slug):
     album = Album.objects.get(slug)
+    # TODO: paginate files
     return render_to_response(
         'album.html',
         {'album': album}
