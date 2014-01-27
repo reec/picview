@@ -6,19 +6,19 @@ It doesn't use a db - it just reads some dirs and caches stuff with memcached.
 ## Requirements:
     
 ### Ubuntu pkgs:
-    - libreadline-dev
-    - memcached
-    - libjpeg-dev (for PIL/Pillow)
+- libreadline-dev
+- memcached
+- libjpeg-dev (for PIL/Pillow)
 
 ### Python 3.3 virtual env (if you don't have python 3.3):        
-    - `git clone git://github.com/yyuu/pyenv.git ~/.pyenv`
-    - Add ~/.pyenv/shims:~/.pyenv/bin to PATH
-    - `pyenv install 3.3.0`
-    - `pyenv shell 3.3.0`
-    - `virtualenv -p ~/.pyenv/versions/3.3.0/bin/python env`
+- `git clone git://github.com/yyuu/pyenv.git ~/.pyenv`
+- Add ~/.pyenv/shims:~/.pyenv/bin to PATH
+- `pyenv install 3.3.0`
+- `pyenv shell 3.3.0`
+- `virtualenv -p ~/.pyenv/versions/3.3.0/bin/python env`
 
 ### If you do have python 3.3:
-    - `virtualenv env`
+- `virtualenv env`
 
 ### Stuff from pip:
-    - `pip install -r requirements.pip`
+- `pip install -r requirements.pip`
