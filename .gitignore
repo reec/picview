@@ -1,1 +1,3 @@
 picview/picview_settings.py
+picview/settings_local*.py
+picview/wsgi.py
