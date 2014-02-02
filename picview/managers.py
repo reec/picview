@@ -21,9 +21,7 @@ class AlbumManager(object):
 
     @property
     def albums(self):
-        if not self._albums:
-            self._albums = self.get_album_list()
-        return self._albums
+        return self.get_album_list()
 
     def _get_model(self):
         from picview.models import Album
@@ -43,10 +41,15 @@ class AlbumManager(object):
         return self.albums
 
     def get_album_list(self):
+        album_list = cache.get('album-list')
+        if album_list:
+            return album_list
+
         pic_dir = settings.PICVIEW_DIR
         album_names = os.listdir(pic_dir)
         print(album_names)
         album_list = []
         for album_name in album_names:
             album_list.append(self.model(name=album_name))
+        cache.set('album-list', album_list, 30)
         return album_list
