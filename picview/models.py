@@ -150,7 +150,7 @@ class Image(File):
         if not os.path.exists(thumbnail_dir_path):
             os.mkdir(thumbnail_dir_path)
 
-        image.save(self.get_thumbnail_path())
+        image.save(self.get_thumbnail_path(), quality=90)
 
 
 class Video(File):
