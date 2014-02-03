@@ -9,14 +9,25 @@
     <div id="album">
         <div class="inset-box">
             <div id="thumbnails" class="inset-box-content">
-                {% for file in album.files %}
+                {% for file in page.object_list %}
                     <div class="thumbnail">
+                        <div class="aspect-placeholder"></div>
                         <a href="{{ file.get_view_url }}">
                             <img src="{{ file.get_thumbnail_url }}">
                         </a>
                     </div>
                 {% endfor %}
             </div>
+        </div>
+        <div id="pages">
+            {% for page_num in paginator.page_range %}
+                <a
+                    href="{% url 'album' album.slug %}{% if page_num != 1 %}?p={{ page_num }}{% endif %}"
+                    class="{% if page_num == page.number %}current{% endif %}"
+                >
+                    <div></div>
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
