@@ -1,4 +1,5 @@
 import os
+import logging
 from PIL import Image as PILImage
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -6,6 +7,9 @@ from django.core.cache import cache
 from django.template.defaultfilters import slugify
 
 from picview.managers import AlbumManager
+
+logger = logging.getLogger(__name__)
+
 
 class Album(object):
     """
@@ -46,7 +50,8 @@ class Album(object):
         return self._files
 
     def cache(self):
-        print('caching %s with %d files' % (self.slug, len(self._files or [])))
+        logging.debug('caching %s with %d files', self.slug,
+                      len(self._files or []))
         cache.set('album-%s' % self.slug, self)
 
     def get_images(self):
@@ -72,7 +77,7 @@ class File(object):
 
     @property
     def position(self):
-        if self._position is None: # can be 0
+        if self._position is None:  # can be 0
             self._position = self.album.files.index(self)
         return self._position
 
@@ -110,6 +115,7 @@ class File(object):
     def get_path(self):
         return os.path.join(self.album.get_path(), self.name)
 
+
 class Image(File):
     def __init__(self, *args, **kwargs):
         super(Image, self).__init__(*args, **kwargs)
@@ -126,7 +132,8 @@ class Image(File):
         return reverse('output_image', args=[self.album.slug, self.position+1])
 
     def get_thumbnail_url(self):
-        return reverse('output_image_thumbnail', args=[self.album.slug, self.position+1])
+        return reverse('output_image_thumbnail',
+                       args=[self.album.slug, self.position+1])
 
     def get_thumbnail_path(self):
         return os.path.join(self.album.get_path(), 'thumbnails', self.name)
@@ -144,6 +151,7 @@ class Image(File):
             os.mkdir(thumbnail_dir_path)
 
         image.save(self.get_thumbnail_path())
+
 
 class Video(File):
     def __init__(self, *args, **kwargs):

@@ -20,7 +20,7 @@
             </div>
         </div>
         <div id="pages">
-            {% for page_num in paginator.page_range %}
+            {% for page_num in page.paginator.page_range %}
                 <a
                     href="{% url 'album' album.slug %}{% if page_num != 1 %}?p={{ page_num }}{% endif %}"
                     class="{% if page_num == page.number %}current{% endif %}"

@@ -1,6 +1,9 @@
 import os
+import logging
 from django.conf import settings
 from django.core.cache import cache
+
+logger = logging.getLogger(__name__)
 
 
 class AlbumManager(object):
@@ -30,7 +33,7 @@ class AlbumManager(object):
     def get(self, slug):
         album = cache.get('album-%s' % slug)
         if album:
-            print('got album from cache')
+            logger.debug('got album from cache: %s', album)
             return album
         for album in self.albums:
             if album.slug == slug:
@@ -47,7 +50,7 @@ class AlbumManager(object):
 
         pic_dir = settings.PICVIEW_DIR
         album_names = os.listdir(pic_dir)
-        print(album_names)
+        logger.debug('album names: %s', album_names)
         album_list = []
         for album_name in album_names:
             album_list.append(self.model(name=album_name))
