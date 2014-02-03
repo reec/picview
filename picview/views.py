@@ -1,7 +1,7 @@
 import mimetypes
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 from picview.models import Album
 
@@ -18,10 +18,15 @@ def album(request, slug):
     page_number = request.GET.get('p', 1)
     album = Album.objects.get(slug)
     paginator = Paginator(album.files, settings.FILES_PER_PAGE)
-    page = paginator.page(page_number)
+
+    try:
+        page = paginator.page(page_number)
+    except (InvalidPage, EmptyPage):
+        raise Http404
+
     return render_to_response(
         'album.html',
-        {'album': album, 'paginator': paginator, 'page': page}
+        {'album': album, 'page': page}
     )
 
 
