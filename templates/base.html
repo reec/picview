@@ -7,18 +7,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div id="topBar">
+    <div id="top-bar">
         <div id="logo">
             <a href="/"><img src="{% static 'img/picview.png' %}"/></a>
         </div>
         {% block breadcrumbs %}{% endblock %}
     </div>
-    <div id="container">
-        <div id="contentHolder">
-            <div id="content">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
+    <div id="content">
+        {% block body %}{% endblock %}
     </div>
 </body>
 </html>
