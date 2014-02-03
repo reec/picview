@@ -441,15 +441,14 @@ input.sign {
 
 #album #thumbnails {
     text-align: center;
-    padding: 0;
-    overflow: auto;
+    padding: 10px 0 10px 0;
+    margin-bottom: -10px;
+    overflow: hidden;
 }
 #album #thumbnails > .thumbnail {
     float: left;
     position: relative;
     width: 25%;
-    overflow: hidden;
-
 }
 @media (max-width: 560px) {
     #album #thumbnails > .thumbnail {
