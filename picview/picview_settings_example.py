@@ -30,6 +30,8 @@ LOGGING = {
     }
 }
 
+FFMPEG_BINARY = 'ffmpeg'
+
 # You don't need to change anything past here!
 IMAGE_EXTS = ('jpg', 'jpeg', 'png', 'gif', 'bmp')
-VIDEO_EXTS = ('mpg', 'mpeg', '3gp', 'mkv', '.divx', 'xvid')
+VIDEO_EXTS = ('mpg', 'mpeg', '3gp', 'mkv', '.divx', 'xvid', 'avi')

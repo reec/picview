@@ -1,3 +1,4 @@
+import os
 import mimetypes
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -50,3 +51,8 @@ def output_image_thumbnail(request, slug, position):
         image.generate_thumbnail()
     image_data = open(image.get_thumbnail_path(), 'rb').read()
     return HttpResponse(image_data, content_type='image/jpeg')
+
+
+def video(request, slug, position):
+    # mock view for not breaking list views
+    pass

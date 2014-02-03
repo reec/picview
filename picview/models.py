@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.template.defaultfilters import slugify
 
 from picview.managers import AlbumManager
+from picview.utils import get_video_frame
 
 logger = logging.getLogger(__name__)
 
@@ -163,3 +164,26 @@ class Video(File):
 
     def get_view_url(self):
         return reverse('video', args=[self.album.slug, self.position+1])
+
+    def get_thumbnail_url(self):
+        # Use same thumbnail view for video as image.
+        return reverse('output_image_thumbnail',
+                       args=[self.album.slug, self.position+1])
+
+    def thumbnail_exists(self):
+        return os.path.exists(self.get_thumbnail_path())
+
+    def get_thumbnail_path(self):
+        return os.path.join(self.album.get_path(), 'thumbnails', self.name)
+
+    def generate_thumbnail(self):
+        image = get_video_frame(self.get_path())
+        image.thumbnail((128, 128), PILImage.ANTIALIAS)
+        thumbnail_dir_path = os.path.join(self.album.get_path(), 'thumbnails')
+
+        if not os.path.exists(thumbnail_dir_path):
+            os.mkdir(thumbnail_dir_path)
+
+        # TODO: thumbnail will get the "wrong" extension since its named after
+        # TODO: the video file, but thumbnail view response is mimetyped to jpeg
+        image.save(self.get_thumbnail_path(), 'jpeg')
