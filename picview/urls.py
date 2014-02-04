@@ -20,5 +20,8 @@ urlpatterns = patterns('',
         'picview.views.output_image_thumbnail',
         name    = 'output_image_thumbnail'
     ),
+    # Video
+    url(r'^(?P<slug>[^/]+)/(?P<position>\d+)/video$',
+        'picview.views.video', name='video'),
     url(r'^admin/', include(admin.site.urls)),
 )
