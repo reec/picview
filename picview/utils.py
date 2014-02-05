@@ -11,18 +11,18 @@ logger = logging.getLogger(__name__)
 
 def get_video_frame(source, frame='00:00:01', binary=None):
     """
-    Get video frame as PIL.Image. Requires ffmpeg installed.
+    Get video frame as PIL.Image.Image. Requires ffmpeg installed.
 
-    .. note::
+    .. warning::
 
         Using `-ss` argument for position will cause ffmpeg to bork if the
         frame is "outside" video. There's surely an argument for getting the
         nearest frame.
 
     :param source: Filepath to video
-    :param frame: Seek expressed as HH:MM:SS or frame number
+    :param frame: Seek expressed as `HH:MM:SS` or frame number
     :param binary: Path to `ffmpeg` binary. Defaults to django settings.
-    :return: `PIL.Image`
+    :return: :py:class:`PIL.Image.Image`
     """
     if not binary:
         binary = settings.FFMPEG_BINARY
