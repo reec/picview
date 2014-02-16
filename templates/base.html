@@ -10,7 +10,7 @@
 <body>
     <div id="top-bar">
         <div id="logo">
-            <a href="/"><img src="{% static 'img/picview.png' %}"/></a>
+            <a href="{% url 'index' %}"><img src="{% static 'img/picview.png' %}"/></a>
         </div>
         <div id="breadcrumbs">
             {% block breadcrumbs %}{% endblock %}
