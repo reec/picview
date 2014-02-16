@@ -1,7 +1,6 @@
-import os
 import mimetypes
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 from picview.models import Album
@@ -9,10 +8,7 @@ from picview.models import Album
 
 def index(request):
     albums = Album.objects.all()
-    return render_to_response(
-        'index.html',
-        {'albums': albums}
-    )
+    return render(request, 'index.html', {'albums': albums})
 
 
 def album(request, slug):
@@ -25,24 +21,22 @@ def album(request, slug):
     except (InvalidPage, EmptyPage):
         raise Http404
 
-    return render_to_response(
-        'album.html',
-        {'album': album, 'page': page}
-    )
+    return render(request, 'album.html', {'album': album, 'page': page})
 
 
 def image(request, slug, position):
     image = Album.objects.get(slug).files[int(position)-1]
-    return render_to_response(
-        'image.html',
-        {'image': image}
-    )
+    print('is_ajax:',request.is_ajax())
+    return render(request, 'image.html', {'image': image})
 
 
 def output_image(request, slug, position):
     image = Album.objects.get(slug).files[int(position)-1]
     image_data = open(image.get_path(), 'rb').read()
-    return HttpResponse(image_data, content_type=mimetypes.guess_type(image.name)[0])
+    return HttpResponse(
+        image_data,
+        content_type=mimetypes.guess_type(image.name)[0]
+    )
 
 
 def output_image_thumbnail(request, slug, position):

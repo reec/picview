@@ -5,16 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}{% endblock %}
 </head>
 <body>
     <div id="top-bar">
         <div id="logo">
             <a href="/"><img src="{% static 'img/picview.png' %}"/></a>
         </div>
-        {% block breadcrumbs %}{% endblock %}
+        <div id="breadcrumbs">
+            {% block breadcrumbs %}{% endblock %}
+        </div>
     </div>
     <div id="content">
-        {% block body %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
 </body>
 </html>

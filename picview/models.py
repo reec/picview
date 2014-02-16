@@ -144,7 +144,7 @@ class Image(File):
 
     def generate_thumbnail(self):
         image = PILImage.open(self.get_path())
-        image.thumbnail((128, 128), PILImage.ANTIALIAS)
+        image.thumbnail((256, 256), PILImage.ANTIALIAS)
 
         # Create the subdir 'thumbnails' if it doesn't exist
         thumbnail_dir_path = os.path.join(self.album.get_path(), 'thumbnails')
@@ -178,7 +178,7 @@ class Video(File):
 
     def generate_thumbnail(self):
         image = get_video_frame(self.get_path())
-        image.thumbnail((128, 128), PILImage.ANTIALIAS)
+        image.thumbnail((256, 256), PILImage.ANTIALIAS)
         thumbnail_dir_path = os.path.join(self.album.get_path(), 'thumbnails')
 
         if not os.path.exists(thumbnail_dir_path):

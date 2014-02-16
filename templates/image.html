@@ -1,4 +1,10 @@
-{% extends 'base.html' %}
+{% extends request.is_ajax|yesno:'base.json,base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/picview.js' %}"></script>
+{% endblock %}
 
 {% block breadcrumbs %}
 <div>
@@ -8,18 +14,22 @@
     <a href="">{{ image.name }}</a>
 </div>
 {% endblock %}
-{% block body %}
+
+{% block content %}
     <div id="view">
         <div class="inset-box">
-            <div id="image">
-                {% if not image.is_first %}
-                    <a id="prev" class="nav-link" accesskey="z" href="{% url 'image' image.album.slug image.position %}"></a>
-                {% endif %}
-                {% if not image.is_last %}
-                    <a id="next" class="nav-link" accesskey="x"  href="{% url 'image' image.album.slug image.position|add:'2' %}"></a>
-                {% endif %}
-                <img src="{{ image.get_url }}">
+            <div id="zoom-container">
+                <div id="image">
+                    {% if not image.is_first %}
+                        <a id="prev" class="nav-link ajax" accesskey="z" href="{% url 'image' image.album.slug image.position %}"></a>
+                    {% endif %}
+                        <div id="zoom" class="nav-link" accesskey="c"></div>
+                    {% if not image.is_last %}
+                        <a id="next" class="nav-link ajax" accesskey="x"  href="{% url 'image' image.album.slug image.position|add:'2' %}"></a>
+                    {% endif %}
+                    <img src="{{ image.get_url }}">
+                </div>
             </div>
         </div>
-    <div id="view">
+    </div>
 {% endblock %}

@@ -122,7 +122,8 @@ h4 {
     text-shadow: 0 -1px 0 #000;
     box-shadow: 0 0 10px 5px #111;
 }
-#top-bar div {
+#top-bar #logo,
+#top-bar #breadcrumbs > div {
     float: left;
     height: 36px;
     border-right: 2px solid #222;
@@ -246,11 +247,14 @@ h4 {
         display: none;
     }
 }
-#index .album .thumbnails .thumbnail a {
+#index .album .thumbnails .thumbnail > a {
     display: inline-block;
     box-shadow: 0 0 10px 0 #000;
+    max-width: 90%;
 }
-
+#index .album .thumbnails .thumbnail > a > img {
+    width: 100%;
+}
 
 /* -- album -- */
 #album {
@@ -296,6 +300,8 @@ h4 {
 }
 #album #thumbnails > .thumbnail > a > img {
     box-shadow: 0 0 10px 0 #000;
+    max-width: 90%;
+    max-height: 90%;
 }
 #album #pages {
     margin-bottom: -10px;
@@ -329,10 +335,11 @@ h4 {
 }
 #view #image {
     position: relative;
+    text-align: center;
 }
 #view #image .nav-link {
     position: absolute;
-    width: 40%;
+    width: 20%;
     height: 100%;
 }
 #view #image .nav-link#prev {
@@ -341,7 +348,36 @@ h4 {
 #view #image .nav-link#next {
     right: 0;
 }
+#view #image .nav-link#zoom {
+    left: 50%;
+    margin-left: -10%;
+}
 #view #image img {
     width: 100%;
     box-shadow: 0 0 10px 0 #000;
+}
+
+/* -- full screen view -- */
+body.full-screen #top-bar {
+    display: none;
+}
+body.full-screen #view {
+    max-width: none;
+    visibility: hidden;
+}
+body.full-screen #view #zoom-container {
+    visibility: visible;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+body.full-screen #view #image {
+    display: inline-block;
+}
+body.full-screen #view #image img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
 }

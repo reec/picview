@@ -8,7 +8,6 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
-
 def get_video_frame(source, frame='00:00:01', binary=None):
     """
     Get video frame as PIL.Image.Image. Requires ffmpeg installed.

@@ -1,0 +1,8 @@
+{% load custom_tags %}
+{
+    "title": "{% escape %}{% block title %}PicView{% endblock %}{% endescape %}",
+    "html": {
+        "#breadcrumbs": "{% escape %}{% block breadcrumbs %}{% endblock %}{% endescape %}",
+        "#content": "{% escape %}{% block content %}{% endblock %}{% endescape %}"
+    }
+}
