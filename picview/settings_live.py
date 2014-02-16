@@ -5,3 +5,5 @@ DEBUG = False
 
 # Set this to something appropriate in your settings_local_live.py
 ALLOWED_HOSTS = '*'
+
+CACHES['default']['KEY_PREFIX'] = 'live'
