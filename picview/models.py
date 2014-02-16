@@ -35,7 +35,7 @@ class Album(object):
         album_path = os.path.join(settings.PICVIEW_DIR, self.name)
         file_names = os.listdir(album_path)
         object_list = []
-        for file_name in file_names:
+        for file_name in sorted(file_names):
             ext = os.path.splitext(file_name)[-1].lstrip('.').lower()
             if ext in settings.IMAGE_EXTS:
                 obj = Image(name=file_name, album=self)
