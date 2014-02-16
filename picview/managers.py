@@ -52,7 +52,7 @@ class AlbumManager(object):
         album_names = os.listdir(pic_dir)
         logger.debug('album names: %s', album_names)
         album_list = []
-        for album_name in album_names:
+        for album_name in sorted(album_names, reverse=True):
             album_list.append(self.model(name=album_name))
         cache.set('album-list', album_list, 30)
         return album_list
