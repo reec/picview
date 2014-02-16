@@ -122,6 +122,23 @@ h4 {
     text-shadow: 0 -1px 0 #000;
     box-shadow: 0 0 10px 5px #111;
 }
+#top-bar #logo a {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 110px;
+    height: 36px;
+    background: url('../img/picview.png') no-repeat center;
+
+}
+@media (min-device-pixel-ratio: 2),
+        (-webkit-min-device-pixel-ratio: 2),
+        (-moz-min-device-pixel-ratio: 2) {
+    #top-bar #logo a {
+        background-image: url('../img/picview@2x.png');
+        background-size: 98px 26px;
+    }
+}
 #top-bar #logo,
 #top-bar #breadcrumbs > div {
     float: left;
@@ -135,9 +152,6 @@ h4 {
 }
 #top-bar div a:hover {
     color: #fff;
-}
-#top-bar #logo a {
-    padding: 4px 6px;
 }
 
 /* -- design wrapper -- */
