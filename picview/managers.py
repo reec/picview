@@ -53,6 +53,11 @@ class AlbumManager(object):
         logger.debug('album names: %s', album_names)
         album_list = []
         for album_name in sorted(album_names, reverse=True):
+            if (
+                album_name[0] == '.' or
+                not os.path.isdir(os.path.join(pic_dir, album_name))
+            ):
+                continue
             album_list.append(self.model(name=album_name))
         cache.set('album-list', album_list, 30)
         return album_list
